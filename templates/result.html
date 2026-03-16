@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Results - Postpartum Depression Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Assessment Results</h1>
+            <p>AI-powered risk analysis based on provided information</p>
+        </header>
+
+        <div class="results-summary">
+            <div class="risk-card {{ results.overall_risk|lower }}">
+                <h2>Overall Risk Level</h2>
+                <div class="risk-value">{{ results.overall_risk }}</div>
+                <div class="risk-score">({{ results.overall_score }} probability)</div>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-item">
+                    <h3> Anxiety Risk</h3>
+                    <div class="result-value {{ 'high' if results.anxiety_prediction == 'High Risk' else 'low' }}">
+                        {{ results.anxiety_prediction }}
+                    </div>
+                    <div class="result-probability">Probability: {{ results.anxiety_probability }}</div>
+                </div>
+
+                <div class="result-item">
+                    <h3> Suicide Risk</h3>
+                    <div class="result-value {{ 'high' if results.suicide_prediction == 'High Risk' else 'low' }}">
+                        {{ results.suicide_prediction }}
+                    </div>
+                    <div class="result-probability">Probability: {{ results.suicide_probability }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="patient-summary">
+            <h3>📋 Assessment Summary</h3>
+            <table class="summary-table">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>{{ results.patient_data.Age }}</td>
+                </tr>
+                <tr>
+                    <td>Feeling sad/tearful</td>
+                    <td>{{ results.patient_data.Sad }}</td>
+                </tr>
+                <tr>
+                    <td>Irritability</td>
+                    <td>{{ results.patient_data.Irritable }}</td>
+                </tr>
+                <tr>
+                    <td>Sleep problems</td>
+                    <td>{{ results.patient_data.Sleep }}</td>
+                </tr>
+                <tr>
+                    <td>Concentration issues</td>
+                    <td>{{ results.patient_data.Concentration }}</td>
+                </tr>
+                <tr>
+                    <td>Appetite changes</td>
+                    <td>{{ results.patient_data.Appetite }}</td>
+                </tr>
+                <tr>
+                    <td>Anxiety</td>
+                    <td>{{ results.patient_data.Anxious }}</td>
+                </tr>
+                <tr>
+                    <td>Guilt feelings</td>
+                    <td>{{ results.patient_data.Guilt }}</td>
+                </tr>
+                <tr>
+                    <td>Bonding problems</td>
+                    <td>{{ results.patient_data.Bonding }}</td>
+                </tr>
+                <tr>
+                    <td>Suicidal thoughts</td>
+                    <td>{{ results.patient_data.Suicide }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="recommendations">
+            <h3> Recommendations</h3>
+            {% if results.overall_risk == 'HIGH' %}
+            <div class="recommendation urgent">
+                <strong> URGENT:</strong> Please seek immediate professional help. Your assessment indicates high risk levels.
+                Contact a healthcare provider or crisis helpline right away.
+            </div>
+            {% elif results.overall_risk == 'MODERATE' %}
+            <div class="recommendation moderate">
+                <strong> Moderate Risk Detected:</strong> Consider consulting with a healthcare provider for 
+                proper evaluation and support. Early intervention can be very effective.
+            </div>
+            {% else %}
+            <div class="recommendation low">
+                <strong> Low Risk:</strong> Your assessment shows low risk levels. Continue monitoring your 
+                mental health and maintain healthy habits. Reach out if symptoms change.
+            </div>
+            {% endif %}
+            
+            <div class="general-tips">
+                <h4>General Self-Care Tips:</h4>
+                <ul>
+                    <li> Maintain regular sleep patterns</li>
+                    <li> Eat balanced meals</li>
+                    <li> Light exercise when possible</li>
+                    <li> Connect with support groups</li>
+                    <li> Practice relaxation techniques</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="crisis-support">
+            <h3> Crisis Support</h3>
+            <p>If you're in crisis, please contact:</p>
+            <ul>
+                <li> National Suicide Prevention Lifeline: 988</li>
+                <li> Crisis Text Line: Text HOME to 741741</li>
+                <li> Emergency Services: 911</li>
+            </ul>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">New Assessment</a>
+            <button onclick="window.print()" class="btn btn-secondary">Print Results</button>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong> Important:</strong> This is an AI-powered screening tool and not a medical diagnosis. 
+               Results should be discussed with qualified healthcare professionals.</p>
+        </div>
+    </div>
+</body>
+</html>

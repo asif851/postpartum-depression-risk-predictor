@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postpartum Depression Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Postpartum Depression Risk Assessment</h1>
+            <p>Fill in the patient information below to get AI-powered risk predictions</p>
+        </header>
+
+        {% if error %}
+        <div class="error-message">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('predict') }}" method="post" class="prediction-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="timestamp">Date & Time</label>
+                    <input type="datetime-local" id="timestamp" name="timestamp" 
+                           value="{{ now.strftime('%Y-%m-%dT%H:%M') if now else '' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age Range</label>
+                    <select id="age" name="age" required>
+                        <option value="25-30">25-30 years</option>
+                        <option value="30-35" selected>30-35 years</option>
+                        <option value="35-40">35-40 years</option>
+                        <option value="40-45">40-45 years</option>
+                        <option value="45-50">45-50 years</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>Mental Health Assessment</h3>
+            <p class="section-note">Please rate the following symptoms</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Feeling sad or tearful</label>
+                    <select name="sad" required>
+                        <option value="No">No</option>
+                        <option value="Sometimes">Sometimes</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Irritable towards baby & partner</label>
+                    <select name="irritable" required>
+                        <option value="No">No</option>
+                        <option value="Sometimes">Sometimes</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Trouble sleeping at night</label>
+                    <select name="sleep" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="Two or more days a week">Two or more days a week</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Problems concentrating</label>
+                    <select name="concentration" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="Often">Often</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Appetite changes</label>
+                    <select name="appetite" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="Not at all">Not at all</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Feeling anxious</label>
+                    <select name="anxious" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Feeling of guilt</label>
+                    <select name="guilt" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="Maybe">Maybe</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Problems bonding with baby</label>
+                    <select name="bonding" required>
+                        <option value="No">No</option>
+                        <option value="Sometimes">Sometimes</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Suicidal thoughts</label>
+                    <select name="suicide" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Analyze Risk</button>
+                <button type="reset" class="btn btn-secondary">Reset Form</button>
+            </div>
+        </form>
+
+        <div class="info-section">
+            <h3>⚠️ Important Notice</h3>
+            <p>This tool provides AI-based predictions and should NOT replace professional medical advice. 
+               If you're experiencing severe symptoms, please consult a healthcare provider immediately.</p>
+            <p>In case of emergency, call your local emergency services or a crisis helpline.</p>
+        </div>
+    </div>
+</body>
+</html>

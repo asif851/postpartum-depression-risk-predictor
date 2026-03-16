@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.prediction-form {
+    padding: 40px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+h3 {
+    color: #333;
+    margin: 30px 0 15px;
+    font-size: 1.5em;
+}
+
+.section-note {
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.form-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    flex: 2;
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+    flex: 1;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.error-message {
+    background: #fee;
+    color: #c00;
+    padding: 15px;
+    margin: 20px 40px;
+    border-radius: 8px;
+    border-left: 4px solid #c00;
+}
+
+.info-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.info-section h3 {
+    margin-top: 0;
+    color: #dc3545;
+}
+
+/* Results page styles */
+.results-summary {
+    padding: 40px;
+    text-align: center;
+}
+
+.risk-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.risk-card.high {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.risk-card.moderate {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #333;
+}
+
+.risk-card.low {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.risk-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.risk-value {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.risk-score {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.result-item {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.result-item h3 {
+    margin: 0 0 15px;
+    color: #333;
+}
+
+.result-value {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.result-value.high {
+    color: #dc3545;
+}
+
+.result-value.low {
+    color: #28a745;
+}
+
+.result-probability {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.patient-summary {
+    padding: 0 40px 40px;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.recommendations {
+    padding: 40px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.recommendation {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.recommendation.urgent {
+    background: #fee;
+    border-left: 4px solid #dc3545;
+}
+
+.recommendation.moderate {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+.recommendation.low {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+}
+
+.general-tips {
+    margin-top: 20px;
+}
+
+.general-tips ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.general-tips li {
+    padding: 10px;
+    margin: 5px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.crisis-support {
+    padding: 40px;
+    background: #fff3cd;
+    border-top: 1px solid #ffc107;
+}
+
+.crisis-support h3 {
+    margin-top: 0;
+    color: #856404;
+}
+
+.crisis-support ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.crisis-support li {
+    padding: 10px 0;
+    font-size: 1.1em;
+}
+
+.disclaimer {
+    padding: 20px 40px 40px;
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .form-row,
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .risk-value {
+        font-size: 2.5em;
+    }
+}

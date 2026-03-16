@@ -1,0 +1,12 @@
+{
+    "anxiety": {
+        "Gradient Boosting": 0.920265780730897,
+        "Random Forest": 0.8870431893687708,
+        "chosen": "Gradient Boosting"
+    },
+    "suicide": {
+        "Gradient Boosting": 0.9003322259136213,
+        "Random Forest": 0.893687707641196,
+        "chosen": "Random Forest (better recall for safety)"
+    }
+}
